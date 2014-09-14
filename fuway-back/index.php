@@ -1,6 +1,6 @@
 <meta charset="utf-8">
 <?php
-include_once '../fuway-core/dal.php';
+require_once '../fuway-core/dal.php';
 
 if (isset($_GET['search'])) {
     echo json_encode(search_person($_GET['search']));
