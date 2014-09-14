@@ -19,4 +19,8 @@ $selected = mysql_select_db($db_name,$db)
 or die("Could not select " . $db_name);
 
 
-echo "Connected to MySQL<br>";
+function execute_query($query) {
+    global $db;
+    $result = mysql_query($query) or die(mysql_error($db));
+    return $result;
+}
