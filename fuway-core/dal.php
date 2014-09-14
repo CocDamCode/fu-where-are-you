@@ -17,27 +17,27 @@ function dal_insert_schedule($schedule) {
     $class  = mysql_real_escape_string($schedule["Class"]);
     $course = mysql_real_escape_string($schedule["Course"]);
 
-    execute_query("INSERT INTO fuway_data.fuway_schedule".
+    return execute_query("INSERT INTO fuway_data.fuway_schedule".
         " (id, slotdate, slot, person_name, person_code, role, email, room, course, class)".
         " VALUES (NULL, '".
         $date.
-        " ', '".
+        "', '".
         $slot.
-        " ', '".
+        "', '".
         $name.
-        " ', '".
+        "', '".
         $code.
-        " ', '".
+        "', '".
         $role.
-        " ', '".
+        "', '".
         $email.
-        " ', '".
+        "', '".
         $room.
-        " ', '".
+        "', '".
         $course.
-        " ', '".
+        "', '".
         $class.
-        " ');");
+        "');");
 }
 
 function dal_insert_data_version($data) {

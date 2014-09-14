@@ -12,8 +12,11 @@ $data->read('ex.xls');
 
 
 $result = get_result_teacher($data);
-print_r($result);
-//dal_insert_schedule($schedule);
+
+clear_data();
+foreach ($result as $t) {
+    dal_insert_schedule($t);
+}
 
 function get_persons_teacher($dataTKB)
 {
@@ -25,7 +28,7 @@ function get_persons_teacher($dataTKB)
         $person["Code"] = $sheet[$i][2];
         $person["Name"] = $sheet[$i][3];
         $person["Email"] = $sheet[$i][19];
-        $person["Role"] = "Teacher";
+        $person["Role"] = "teacher";
         // echo "Reading row $i - " . $sheet[$i][2] . " - " .$sheet[$i][3] ." - " .$sheet[$i][19] ." <br/>";
         array_push($persons, $person);
     }
