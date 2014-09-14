@@ -26,7 +26,7 @@ function search_person($str)
 }
 
 function get_person_schedule($str, $date) {
-    if (!$date) return [];
+    if (!$date) return array();
     $email = mysql_real_escape_string($str);
     $query_date = date_format($date, 'Y-m-d');
     $result = execute_query("SELECT * FROM fuway_schedule WHERE email = \"$email\" AND slotdate = \"$query_date\" LIMIT 0, 10");
