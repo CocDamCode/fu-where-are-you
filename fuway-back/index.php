@@ -23,3 +23,20 @@
 
         echo json_encode($persons);
     }
+
+    if (isset($_GET['email'])) {
+        $result = [];
+        $person1 = [];
+        $person1["Email"] = "trungdqse60994@fpt.edu.vn";
+        $person1["Code"] = "SE60994";
+        $person1["Name"] = "Đinh Quang Trung";
+
+        $result["Person"] = $person1;
+        $result["Date"] = time();
+        $result["Slot"] = 6;
+        $result["Room"] = "408";
+        $result["Class"] = "SE0770";
+        $result["Course"] = "HCI";
+
+        echo json_encode($result);
+    }
