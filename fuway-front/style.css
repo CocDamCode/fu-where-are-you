@@ -41,21 +41,28 @@ input {
 
 .search-div {
     width: 500px;
+    padding: 3px 20px;
     margin: 1% auto;
 }
 
-#searchInput {
-    width: 100%;
+input[type=text],input[type=search] {
     padding: 10px;
     font-size: 15px;
     border-radius: 10px;
     border: 1px solid #B8B8B8;
     box-shadow: inset 1px 1px 4px rgba(0, 0, 0, 0.19);
-    margin: 2px 20px;
 }
 
-#searchInput:focus {
+input[type=text]:focus, input[type=search]:focus {
     outline: 0;
+}
+
+#searchInput {
+    width: 70%;
+}
+
+#datepicker {
+    width: 27%;
 }
 
 header {

@@ -39,7 +39,5 @@ function get_email($name, $code) {
         $email = $email.$worlds[$i][0];
     }
     $email = $email.$code."@fpt.edu.vn";
-    echo $email;
+    return $email;
 }
-
-get_email("Đinh Quang Trường", "SE60994");

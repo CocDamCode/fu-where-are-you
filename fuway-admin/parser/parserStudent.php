@@ -42,7 +42,7 @@ function get_result_student($dataSDD, $teacherResults)
                 $person = array();
                 $person["Code"] = $sheet[$i][2];
                 $person["Name"] = $sheet[$i][3];
-                $person["Email"] = $sheet[$i][3] . $sheet[$i][2];
+                $person["Email"] = get_email($sheet[$i][3], $sheet[$i][2]);
                 $person["Role"] = "student";
                 $result = array();
                 $result["Person"] = $person;

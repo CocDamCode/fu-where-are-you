@@ -26,7 +26,7 @@ function loadDetail(email, id) {
     var load = $.ajax({
         type: "GET",
         url: "../fuway-back/index.php",
-        data: { email: email, date: "2014-09-11"}
+        data: { email: email, date: $( "#datepicker").val()}
     }).done(function (result) {
         showDetail(result);
     });
@@ -37,24 +37,28 @@ function showResult(result) {
     var persons = JSON.parse(result);
     var ul = $("#resultUl");
     var html = "";
-    for (var i = 0; i < persons.length; i++) {
-        var color = persons[i]["Role"] == "teacher" ? "rgb(221, 105, 105)" : "rgb(28, 103, 238)";
-        html +=
-            "<li id=\""+persons[i]["Code"]+"\" " +
-            "onclick='" +
-            "loadDetail(\"" + persons[i]["Email"] + "\", \""+persons[i]["Code"]+"\")' " +
-            "style='color:" + color + " '" +
-            ">" +
-            "<span class='person-code'>" +
-            persons[i]["Code"] +
-            "</span>" +
-            "<span class='person-name'>" +
-            persons[i]["Name"] +
-            "</span>" +
-            "<span class='person-email'>" +
-            persons[i]["Email"] +
-            "</span>" +
-            "</li>"
+    if (persons.length > 0) {
+        for (var i = 0; i < persons.length; i++) {
+            var color = persons[i]["Role"] == "teacher" ? "rgb(221, 105, 105)" : "rgb(28, 103, 238)";
+            html +=
+                "<li id=\"" + persons[i]["Code"] + "\" " +
+                "onclick='" +
+                "loadDetail(\"" + persons[i]["Email"] + "\", \"" + persons[i]["Code"] + "\")' " +
+                "style='color:" + color + " '" +
+                ">" +
+                "<span class='person-code'>" +
+                persons[i]["Code"] +
+                "</span>" +
+                "<span class='person-name'>" +
+                persons[i]["Name"] +
+                "</span>" +
+                "<span class='person-email'>" +
+                persons[i]["Email"] +
+                "</span>" +
+                "</li>"
+        }
+    } else {
+        html = 'Không tìm thấy kết quả nào!';
     }
     ul.html(html);
 }
@@ -91,7 +95,7 @@ function showDetail(result) {
     var info = $("#infoDiv");
     var html = "";
     if (persons.length > 0) {
-        html += "<div>Lịch trong ngày của "+persons[0]["Person"]["Name"]+"</div>" +
+        html += "<div style='padding-top: 15px'>Lịch trong ngày của "+persons[0]["Person"]["Name"]+"</div>" +
             "<div class='bigText'>" + date_format(persons[0]["Date"]) + "</div>" +
             "<table width='100%' border='1'><tr>" +
             "<td>Slot</td>" +
@@ -108,11 +112,9 @@ function showDetail(result) {
             html += "<td>" + person["Course"] + "</td></tr>"
         }
 
-        html += "</table>";
-//            + person["Person"]["Name"] + "|||"
-//            + person["Person"]["Code"] + "|||"
-//            + person["Person"]["Email"] + "|||"
-//            + person["Person"]["Role"] + "|||"
+        html += "</table><div style='height: 20px'></div>";
+    } else {
+        html = "<div style='padding: 15px'>Không có lịch học trong ngày " + $('#datepicker').val() + "</div>";
     }
     info.html(html);
 }
@@ -121,17 +123,23 @@ function checkKeyword() {
     if ($('#searchInput').val().length == 0) {
         $('header').slideDown();
         $("#resultUl").html('');
-        $('#infoDiv').html('')
+        $('#infoDiv').html('');
+    }
+}
+
+function startSearch() {
+    clearTimeout(timeout);
+    $("#resultUl").html('');
+    $('#infoDiv').html('')
+    if ($("#searchInput").val().length > 2) {
+        search();
+    } else {
+
     }
 }
 
 $(document).ready(function () {
     $("#searchInput").keyup(function () {
-        clearTimeout(timeout);
-        if ($("#searchInput").val().length > 2) {
-            search();
-        } else {
-
-        }
+        startSearch();
     });
 });

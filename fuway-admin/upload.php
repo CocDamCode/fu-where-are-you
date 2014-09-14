@@ -7,6 +7,7 @@ if (!$_FILES) {
 require_once 'parser/Excel/reader.php';
 require_once '../fuway-core/db.php';
 require_once '../fuway-core/dal.php';
+require_once 'util.php';
 require_once 'parser/parserTeacher.php';
 require_once 'parser/parserStudent.php';
 

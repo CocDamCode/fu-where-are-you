@@ -6,8 +6,20 @@
     <title>FU Where Are You?</title>
     <link rel="stylesheet" href="style.css">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300&subset=latin,vietnamese' rel='stylesheet' type='text/css'>
-    <script rel="script" type="text/javascript" src="../resources/jquery-1.11.1.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
     <script rel="script" type="text/javascript" src="script.js"></script>
+    <script>
+        $(function() {
+            $( "#datepicker" ).datepicker();
+            $( "#datepicker" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
+            $( "#datepicker").val(get_current_date());
+            $( "#datepicker").change(function () {
+                startSearch();
+            });
+        });
+    </script>
 </head>
 <body>
 <header>
@@ -16,7 +28,8 @@
 <div class="container">
     <div class="search-div">
         <input type="search" onkeyup="checkKeyword()" class="search-input" id="searchInput" name="searchInput"
-               placeholder="Ex: Thanh Hải, SE60916, hainnt, hainntse60916@fpt.edu.vn ...">
+               placeholder="Ex: Thanh Hải, SE60916, hainnt..."/>
+        <input id="datepicker" type="text"/>
     </div>
     <div class="result-div">
         <div class="result-left">

@@ -94,7 +94,8 @@ function get_result_teacher($dataTKB)
             if ($sheet[$i][$j] != "") {
                 $string = explode("-", $sheet[$i][$j]);
                 $result["Person"] = $person;
-                $result["Date"] = date("Y-m-d", $dataTKB->sheets[$sheet_num]['cellsInfo'][$i][1]['raw']);
+                $result["Date"] = date("Y-m-d", ((int) $dataTKB->sheets[$sheet_num]['cellsInfo'][$i][1]['raw'])-86400);
+
                 //$result["Date"] = $dataTKB->sheets[$sheet_num]['cellsInfo'][$i][1]['raw'];
                 $result["Slot"] = $sheet[$i][3];
                 $result["Room"] = $string[2];
