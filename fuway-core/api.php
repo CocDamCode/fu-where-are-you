@@ -11,10 +11,10 @@ function search_person($str)
     $keyword = mysql_real_escape_string("%" . $str . "%");
     $result = execute_query("SELECT DISTINCT person_name, person_code, role, email FROM fuway_schedule WHERE person_name LIKE \"$keyword\" OR email LIKE \"$keyword\" LIMIT 0, 10");
 
-    $persons = [];
+    $persons = array();
     if ($result) {
         while ($row = mysql_fetch_array($result)) {
-            $person = [];
+            $person = array();
             $person["Email"] = $row["email"];
             $person["Code"] = $row["person_code"];
             $person["Name"] = $row["person_name"];
@@ -31,11 +31,11 @@ function get_person_schedule($str, $date) {
     $query_date = date_format($date, 'Y-m-d');
     $result = execute_query("SELECT * FROM fuway_schedule WHERE email = \"$email\" AND slotdate = \"$query_date\" LIMIT 0, 10");
 
-    $slots = [];
+    $slots = array();
     if ($result) {
         while ($row = mysql_fetch_array($result)) {
-            $slot = [];
-            $person = [];
+            $slot = array();
+            $person = array();
             $person["Email"] = $row["email"];
             $person["Code"] = $row["person_code"];
             $person["Name"] = $row["person_name"];

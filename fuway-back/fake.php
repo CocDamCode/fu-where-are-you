@@ -1,20 +1,20 @@
 <?php
 
     if (isset($_GET['search'])) {
-        $persons = [];
-        $person1 = [];
+        $persons = array();
+        $person1 = array();
         $person1["Email"] = "trungdqse60994@fpt.edu.vn";
         $person1["Code"] = "SE60994";
         $person1["Name"] = "Đinh Quang Trung";
         $person1["Role"] = "student";
 
-        $person2 = [];
+        $person2 = array();
         $person2["Email"] = "tuanbtse6[]0824@fpt.edu.vn";
         $person2["Code"] = "SE60824";
         $person2["Name"] = "Bùi Tiến Tuân";
         $person1["Role"] = "student";
 
-        $person3 = [];
+        $person3 = array();
         $person3["Email"] = "hainntse60916@fpt.edu.vn";
         $person3["Code"] = "SE60916";
         $person3["Name"] = "Nguyễn Ngọc Thanh Hải";
@@ -28,26 +28,26 @@
     }
 
     if (isset($_GET['email'])) {
-        $results = [];
-        $person1 = [];
+        $results = array();
+        $person1 = array();
         $person1["Email"] = "trungdqse60994@fpt.edu.vn";
         $person1["Code"] = "SE60994";
         $person1["Name"] = "Đinh Quang Trung";
         $person1["Role"] = "student";
 
-        $person2 = [];
+        $person2 = array();
         $person2["Email"] = "tuanbtse6[]0824@fpt.edu.vn";
         $person2["Code"] = "SE60824";
         $person2["Name"] = "Bùi Tiến Tuân";
         $person1["Role"] = "student";
 
-        $person3 = [];
+        $person3 = array();
         $person3["Email"] = "hainntse60916@fpt.edu.vn";
         $person3["Code"] = "SE60916";
         $person3["Name"] = "Nguyễn Ngọc Thanh Hải";
         $person1["Role"] = "teacher";
 
-        $result1 = [];
+        $result1 = array();
         $result1["Person"] = $person1;
         $result1["Date"] = time();
         $result1["Slot"] = 6;
@@ -55,7 +55,7 @@
         $result1["Class"] = "SE0770";
         $result1["Course"] = "HCI";
 
-        $result2 = [];
+        $result2 = array();
         $result2["Person"] = $person2;
         $result2["Date"] = time();
         $result2["Slot"] = 5;
@@ -63,7 +63,7 @@
         $result2["Class"] = "SE0772";
         $result2["Course"] = "POA";
 
-        $result3 = [];
+        $result3 = array();
         $result3["Person"] = $person3;
         $result3["Date"] = time();
         $result3["Slot"] = 4;

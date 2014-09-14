@@ -8,7 +8,7 @@ function search() {
         var param = $("#searchInput").val();
         var search = $.ajax({
             type: "GET",
-            url: "http://localhost/fu-where-are-you/fuway-back/index.php?search=" + param
+            url: "../fuway-back/index.php?search=" + param
         }).done(function (result) {
             showResult(result);
         });
@@ -25,7 +25,7 @@ function loadDetail(email, id) {
         date.getDate();
     var load = $.ajax({
         type: "GET",
-        url: "http://localhost/fu-where-are-you/fuway-back/index.php",
+        url: "../fuway-back/index.php",
         data: { email: email, date: "2014-09-11"}
     }).done(function (result) {
         showDetail(result);

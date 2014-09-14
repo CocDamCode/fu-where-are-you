@@ -26,7 +26,7 @@ function get_result_student($dataSDD, $teacherResults)
     $STUDENT_NAME_ROW = 13;
     $STUDENT_NAME_MAX = 42;
 
-    $results = [];
+    $results = array();
     for ($num = 0; $num <= 100; $num++) {
         if (isset($dataSDD->sheets[$num])) {
             //File SDD
@@ -37,12 +37,12 @@ function get_result_student($dataSDD, $teacherResults)
             $room = $sheet[5][7];
             for ($i = $STUDENT_NAME_ROW; $i <= $STUDENT_NAME_MAX; $i++) {
                 if (!isset($sheet[$i][2]) || $sheet[$i][2] == "") break;
-                $person = [];
+                $person = array();
                 $person["Code"] = $sheet[$i][2];
                 $person["Name"] = $sheet[$i][3];
                 $person["Email"] = $sheet[$i][3] . $sheet[$i][2];
                 $person["Role"] = "student";
-                $result = [];
+                $result = array();
                 $result["Person"] = $person;
                 $result["Room"] = $room;
                 $result["Class"] = $class;

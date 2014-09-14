@@ -38,7 +38,7 @@ function get_LichGV_sheet($dataTKB)
 
 function get_persons_teacher($dataTKB)
 {
-    $persons = [];
+    $persons = array();
     //Use sheet Cham_cong
     $sheet_num = get_Cham_cong_sheet($dataTKB);
     // echo "+++++++++++".$sheet_num;
@@ -70,8 +70,8 @@ function get_result_teacher($dataTKB)
     $TEACHER_NAME_ROW = 8;
     $SCHEDULE_SLOT_ROW_START = 9;
 
-    $results = [];
-    $result = [];
+    $results = array();
+    $result = array();
     //Sheet LichGV
     $sheet_num = get_LichGV_sheet($dataTKB);
     $sheet = $dataTKB->sheets[$sheet_num]['cells'];
