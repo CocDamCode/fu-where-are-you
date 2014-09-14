@@ -1,4 +1,3 @@
-<meta charset="utf-8">
 <?php
 require_once '../fuway-core/db.php';
 require_once '../fuway-core/dal.php';
