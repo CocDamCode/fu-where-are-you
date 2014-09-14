@@ -21,7 +21,7 @@
 
 <form id="form-upload" method="post" action="upload.php" enctype="multipart/form-data">
     <input type="file" name="file" id="select-file"/>
-    <input type="submit" value="Upload" id="submit-upload"/>
+    <input type="submit" value="Upload & Start Parse" id="submit-upload"/>
 </form>
 
 <div id="progress">
