@@ -67,13 +67,13 @@ function getDayName(date) {
         case 4: return "Thứ 5";
         case 5: return "Thứ 6";
         case 6: return "Thứ 7";
-        case 0: return "Chủ ";
+        case 0: return "Chủ Nhật";
     }
 }
 
 function date_format(d) {
     var date = new Date(d * 1000);
-    return date.getDate() + "/" + (date.getMonth()+1) + "/" + date.getFullYear() + "Nhật ("+ getDayName(date)+")";
+    return date.getDate() + "/" + (date.getMonth()+1) + "/" + date.getFullYear() + " ("+ getDayName(date)+")";
 }
 
 function showDetail(result) {
@@ -86,14 +86,18 @@ function showDetail(result) {
             "<div class='result-date'>" + date_format(person["Date"]) + "</div>" +
             "<div>Vào Slot</div>" +
             "<div class='result-slot'>" + person["Slot"] + "</div>" +
-            "<div></div>" +
-            + person["Room"] + "|||"
-            + person["Class"] + "|||"
-            + person["Course"] + "|||"
-            + person["Person"]["Name"] + "|||"
-            + person["Person"]["Code"] + "|||"
-            + person["Person"]["Email"] + "|||"
-            + person["Person"]["Role"] + "|||"
+            "<div>Tại Phòng</div>" +
+            "<div class='result-room'>" + person["Room"] + "</div>" +
+            "<div>Thầy/Cô</div>" +
+            "<div class='result-name'>" + person["Person"]["Name"] + "</div>" +
+            "<div>Dạy Lớp</div>" +
+            "<div class='result-class'>" + person["Class"] + "</div>" +
+            "<div>Dạy Môn</div>" +
+            "<div class='result-course'>" + person["Course"] + "</div>"
+//            + person["Person"]["Name"] + "|||"
+//            + person["Person"]["Code"] + "|||"
+//            + person["Person"]["Email"] + "|||"
+//            + person["Person"]["Role"] + "|||"
     }
     info.html(html);
 }
