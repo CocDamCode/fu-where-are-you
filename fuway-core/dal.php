@@ -6,7 +6,6 @@
  * Time: 10:41 AM
  */
 
-require_once 'db.php';
 function search_person($str)
 {
     $keyword = mysql_real_escape_string("%" . $str . "%");
