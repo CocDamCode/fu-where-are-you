@@ -6,16 +6,19 @@
         $person1["Email"] = "trungdqse60994@fpt.edu.vn";
         $person1["Code"] = "SE60994";
         $person1["Name"] = "Đinh Quang Trung";
+        $person1["Role"] = "student";
 
         $person2 = [];
         $person2["Email"] = "tuanbtse60824@fpt.edu.vn";
         $person2["Code"] = "SE60824";
         $person2["Name"] = "Bùi Tiến Tuân";
+        $person1["Role"] = "student";
 
         $person3 = [];
         $person3["Email"] = "hainntse60916@fpt.edu.vn";
         $person3["Code"] = "SE60916";
         $person3["Name"] = "Nguyễn Ngọc Thanh Hải";
+        $person1["Role"] = "teacher";
 
         array_push($persons, $person1);
         array_push($persons, $person2);
@@ -30,6 +33,7 @@
         $person1["Email"] = "trungdqse60994@fpt.edu.vn";
         $person1["Code"] = "SE60994";
         $person1["Name"] = "Đinh Quang Trung";
+        $person1["Role"] = "student";
 
         $result["Person"] = $person1;
         $result["Date"] = time();
