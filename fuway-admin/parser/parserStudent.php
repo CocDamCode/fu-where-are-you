@@ -12,7 +12,7 @@ function get_student_schedule($filename, $teacherSchedule)
 
 function get_result($class, $course, $teacherResults)
 {
-    $results = [];
+    $results = array();
     foreach ($teacherResults as &$result) {
         if ($result["Class"] == $class) {
             if ($result["Course"] == $course) {
