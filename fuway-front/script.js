@@ -38,7 +38,7 @@ function showResult(result) {
     var ul = $("#resultUl");
     var html = "";
     for (var i = 0; i < persons.length; i++) {
-        var color = persons[i]["Role"] == "student" ? "rgb(221, 105, 105)" : "rgb(28, 103, 238)";
+        var color = persons[i]["Role"] == "teacher" ? "rgb(221, 105, 105)" : "rgb(28, 103, 238)";
         html +=
             "<li id=\""+persons[i]["Code"]+"\" " +
             "onclick='" +
@@ -75,25 +75,40 @@ function date_format(d) {
     var date = new Date(d * 1000);
     return date.getDate() + "/" + (date.getMonth()+1) + "/" + date.getFullYear() + " ("+ getDayName(date)+")";
 }
+Date.prototype.yyyymmdd = function() {
+    var yyyy = this.getFullYear().toString();
+    var mm = (this.getMonth()+1).toString(); // getMonth() is zero-based
+    var dd  = this.getDate().toString();
+    return yyyy + "-" + (mm[1]?mm:"0"+mm[0]) + "-" + (dd[1]?dd:"0"+dd[0]); // padding
+};
+function get_current_date() {
+    var d = new Date();
+    return d.yyyymmdd();
+}
 
 function showDetail(result) {
     var persons = JSON.parse(result);
     var info = $("#infoDiv");
     var html = "";
     if (persons.length > 0) {
-        var person = persons[0];
-        html += "<div>Vào ngày</div>" +
-            "<div class='result-date'>" + date_format(person["Date"]) + "</div>" +
-            "<div>Vào Slot</div>" +
-            "<div class='result-slot'>" + person["Slot"] + "</div>" +
-            "<div>Tại Phòng</div>" +
-            "<div class='result-room'>" + person["Room"] + "</div>" +
-            "<div>Thầy/Cô</div>" +
-            "<div class='result-name'>" + person["Person"]["Name"] + "</div>" +
-            "<div>Dạy Lớp</div>" +
-            "<div class='result-class'>" + person["Class"] + "</div>" +
-            "<div>Dạy Môn</div>" +
-            "<div class='result-course'>" + person["Course"] + "</div>"
+        html += "<div>Lịch trong ngày của "+persons[0]["Person"]["Name"]+"</div>" +
+            "<div class='bigText'>" + date_format(persons[0]["Date"]) + "</div>" +
+            "<table width='100%' border='1'><tr>" +
+            "<td>Slot</td>" +
+            "<td>Phòng</td>" +
+            "<td>Lớp</td>" +
+            "<td>Môn</td>" +
+            "</tr>";
+
+        for (var i = 0; i < persons.length; i++) {
+            var person = persons[i];
+            html += "<tr><td>" + person["Slot"] + "</td>"
+            html += "<td>" + person["Room"] + "</td>"
+            html += "<td>" + person["Class"] + "</td>"
+            html += "<td>" + person["Course"] + "</td></tr>"
+        }
+
+        html += "</table>";
 //            + person["Person"]["Name"] + "|||"
 //            + person["Person"]["Code"] + "|||"
 //            + person["Person"]["Email"] + "|||"
@@ -106,6 +121,7 @@ function checkKeyword() {
     if ($('#searchInput').val().length == 0) {
         $('header').slideDown();
         $("#resultUl").html('');
+        $('#infoDiv').html('')
     }
 }
 

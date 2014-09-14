@@ -135,3 +135,7 @@ div#infoDiv {
     background: rgb(219, 219, 219);
     padding: 0 20px;
 }
+
+.bigText {
+    font-size: 30px;
+}

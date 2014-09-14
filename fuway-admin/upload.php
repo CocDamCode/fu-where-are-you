@@ -1,5 +1,9 @@
 <?php
 
+if (!$_FILES) {
+    die();
+}
+
 require_once 'parser/Excel/reader.php';
 require_once '../fuway-core/db.php';
 require_once '../fuway-core/dal.php';
