@@ -1,16 +1,18 @@
+<meta charset="UTF-8">
 <?php
 require_once '../../fuway-core/db.php';
 require_once '../../fuway-core/dal.php';
 
 require_once 'Excel/reader.php';
-error_reporting(0);
-$data = new Spreadsheet_Excel_Reader();
-$data->setOutputEncoding('CP1251');
-$data->read('ex.xls');
-//error_reporting(E_ALL ^ E_NOTICE);
-error_reporting(E_ERROR | E_WARNING | E_PARSE);
 
-get_result_teacher($data);
+$data = new Spreadsheet_Excel_Reader();
+$data->setOutputEncoding('UTF8');
+$data->setUTFEncoder('mb');
+$data->read('ex.xls');
+
+
+$result = get_result_teacher($data);
+print_r($result);
 //dal_insert_schedule($schedule);
 
 function get_persons_teacher($dataTKB)
@@ -19,12 +21,12 @@ function get_persons_teacher($dataTKB)
     //Use sheet Cham_cong
     $sheet_num = 1;
     $sheet = $dataTKB->sheets[$sheet_num]['cells'];
-    for ($i = 3; $i <= $dataTKB->sheets[$sheet_num]['numRows']; $i++) {
-        $teacherInfo = [];
+    for ($i = 3; $i < $dataTKB->sheets[$sheet_num]['numRows']; $i++) {
         $person["Code"] = $sheet[$i][2];
         $person["Name"] = $sheet[$i][3];
         $person["Email"] = $sheet[$i][19];
         $person["Role"] = "Teacher";
+        // echo "Reading row $i - " . $sheet[$i][2] . " - " .$sheet[$i][3] ." - " .$sheet[$i][19] ." <br/>";
         array_push($persons, $person);
     }
     return $persons;
@@ -41,17 +43,28 @@ function get_person_teacher($teacher_code, $persons)
 
 function get_result_teacher($dataTKB)
 {
+    $START_COL = 5;
+    $TEACHER_NAME_ROW = 8;
+    $SCHEDULE_SLOT_ROW_START = 9;
+
     $results = [];
     $result = [];
     //Sheet LichGV
     $sheet_num = 2;
     $sheet = $dataTKB->sheets[$sheet_num]['cells'];
     $persons = get_persons_teacher($dataTKB);
-    for ($j = 5; $j <= $dataTKB->sheets[$sheet_num]['numCols']; $j++) {
-        if($sheet[8][$j]=="" || $sheet[8][$j]=="EOF") return;
-        $person = get_person_teacher($sheet[8][$j], $persons);
-        for ($i = 9; $i <= $dataTKB->sheets[$sheet_num]['numRows']; $i++) {
-            if($sheet[$i][$j]=="EOF") return;
+    for ($j = $START_COL; $j <= $dataTKB->sheets[$sheet_num]['numCols']; $j++) {
+        if (!isset($sheet[$TEACHER_NAME_ROW][$j]) ||
+            $sheet[$TEACHER_NAME_ROW][$j] == "" ||
+            $sheet[$TEACHER_NAME_ROW][$j] == "EOF"
+        ) continue;
+        $person = get_person_teacher($sheet[$TEACHER_NAME_ROW][$j], $persons);
+        // print_r($person);
+        // echo "<br/>-----------------------------------<br/><br/>";
+        for ($i = $SCHEDULE_SLOT_ROW_START; $i < $dataTKB->sheets[$sheet_num]['numRows']; $i++) {
+
+            if (!isset($sheet[$i][$j]) || $sheet[$i][$j] == "EOF") continue;
+            // echo "Reading $i-$j <br/>";
             if ($sheet[$i][$j] != "") {
                 $string = explode("-", $sheet[$i][$j]);
                 $result["Person"] = $person;
@@ -60,27 +73,14 @@ function get_result_teacher($dataTKB)
                 $result["Room"] = $string[2];
                 $result["Class"] = $string[1];
                 $result["Course"] = $string[0];
-                print_r($result);
-                //dal_insert_schedule($result);
+                // print_r($result);
+                // dal_insert_schedule($result);
                 array_push($results, $result);
             }
         }
     }
     //print_r($results);
     return $results;
-}
-
-function get_result_student($dataSDD){
-    $results = [];
-    $result = [];
-    //Sheet...
-    //File SDD
-
-    $sheet_num = 0;
-    $sheet = $dataSDD->sheets[$sheet_num]['cells'];
-    $class = $sheet[3][7];
-    $subject=$sheet[4][7];
-    $room=$sheet[5][7];
 }
 
 ?>

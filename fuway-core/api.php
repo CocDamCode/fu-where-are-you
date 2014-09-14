@@ -9,7 +9,7 @@
 function search_person($str)
 {
     $keyword = mysql_real_escape_string("%" . $str . "%");
-    $result = execute_query("SELECT DISTINCT person_name, person_code, role, email FROM fuway_schedule WHERE person_name LIKE \"$keyword\" OR email LIKE \"$keyword\"");
+    $result = execute_query("SELECT DISTINCT person_name, person_code, role, email FROM fuway_schedule WHERE person_name LIKE \"$keyword\" OR email LIKE \"$keyword\" LIMIT 0, 10");
 
     $persons = [];
     if ($result) {
@@ -29,7 +29,7 @@ function get_person_schedule($str, $date) {
     if (!$date) return [];
     $email = mysql_real_escape_string($str);
     $query_date = date_format($date, 'Y-m-d');
-    $result = execute_query("SELECT * FROM fuway_schedule WHERE email = \"$email\" AND slotdate = \"$query_date\"");
+    $result = execute_query("SELECT * FROM fuway_schedule WHERE email = \"$email\" AND slotdate = \"$query_date\" LIMIT 0, 10");
 
     $slots = [];
     if ($result) {

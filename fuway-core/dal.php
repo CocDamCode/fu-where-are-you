@@ -55,3 +55,7 @@ function dal_insert_data_version($data) {
         $sdd_filename.
         "');");
 }
+
+function clear_data() {
+    execute_query("TRUNCATE TABLE fuway_schedule");
+}
