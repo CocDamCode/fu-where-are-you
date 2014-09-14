@@ -34,6 +34,7 @@ function loadDetail(email, id) {
 
 function showResult(result) {
     $('header').slideUp();
+    $('#user-guide').slideUp();
     var persons = JSON.parse(result);
     var ul = $("#resultUl");
     var html = "";
@@ -95,7 +96,7 @@ function showDetail(result) {
     var info = $("#infoDiv");
     var html = "";
     if (persons.length > 0) {
-        html += "<div style='padding-top: 15px'>Lịch trong ngày của "+persons[0]["Person"]["Name"]+"</div>" +
+        html += "<div style='padding-top: 15px'>Lịch trong ngày của <b>"+persons[0]["Person"]["Name"]+"</b></div>" +
             "<div class='bigText'>" + date_format(persons[0]["Date"]) + "</div>" +
             "<table width='100%' border='1'><tr>" +
             "<td>Slot</td>" +
@@ -114,7 +115,7 @@ function showDetail(result) {
 
         html += "</table><div style='height: 20px'></div>";
     } else {
-        html = "<div style='padding: 15px'>Không có lịch học trong ngày " + $('#datepicker').val() + "</div>";
+        html = "<div style='padding: 15px'>Không có lịch trong ngày " + $('#datepicker').val() + "</div>";
     }
     info.html(html);
 }
@@ -122,6 +123,7 @@ function showDetail(result) {
 function checkKeyword() {
     if ($('#searchInput').val().length == 0) {
         $('header').slideDown();
+        $('#user-guide').slideDown();
         $("#resultUl").html('');
         $('#infoDiv').html('');
     }

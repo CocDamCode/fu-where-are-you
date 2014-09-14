@@ -5,17 +5,18 @@
     <meta charset="UTF-8">
     <title>FU Where Are You?</title>
     <link rel="stylesheet" href="style.css">
-    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300&subset=latin,vietnamese' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300&subset=latin,vietnamese' rel='stylesheet'
+          type='text/css'>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
     <script rel="script" type="text/javascript" src="script.js"></script>
     <script>
-        $(function() {
-            $( "#datepicker" ).datepicker();
-            $( "#datepicker" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
-            $( "#datepicker").val(get_current_date());
-            $( "#datepicker").change(function () {
+        $(function () {
+            $("#datepicker").datepicker();
+            $("#datepicker").datepicker("option", "dateFormat", "yy-mm-dd");
+            $("#datepicker").val(get_current_date());
+            $("#datepicker").change(function () {
                 startSearch();
             });
         });
@@ -41,6 +42,18 @@
         </div>
     </div>
 </div>
-<footer></footer>
+<div style="clear: both"></div>
+<div id="user-guide">
+    <ul>
+        <li>Nhập tên và chọn ngày để xem lịch học/dạy của bất kỳ ai trong trường đại học FPT!</li>
+        <li>Tên <span style="color: rgb(221, 105, 105)">giáo viên</span> được tô màu đỏ, <span style="color: rgb(28, 103, 238)">học sinh</span> được tô màu xanh</li>
+        <li>Dữ liệu được cập nhật từ Thời Khoá Biểu và Sổ Điểm Danh của CMS trường đại học FPT (http://cms-hcm.fpt.edu.vn)</li>
+    </ul>
+</div>
+<div style="clear: both"></div>
+<footer>
+    Sản phẩm của Cóc Dám Code - FPT University<br/>
+    Tác giả: Đinh Quang Trung | Bùi Tiến Tuân | Nguyễn Ngọc Thanh Hải
+</footer>
 </body>
 </html>
