@@ -66,6 +66,8 @@ function get_person_teacher($teacher_code, $persons)
 
 function get_result_teacher($dataTKB)
 {
+    date_default_timezone_set('UTC');
+
     $START_COL = 5;
     $TEACHER_NAME_ROW = 8;
     $SCHEDULE_SLOT_ROW_START = 9;
@@ -93,6 +95,7 @@ function get_result_teacher($dataTKB)
                 $string = explode("-", $sheet[$i][$j]);
                 $result["Person"] = $person;
                 $result["Date"] = date("Y-m-d", $dataTKB->sheets[$sheet_num]['cellsInfo'][$i][1]['raw']);
+                //$result["Date"] = $dataTKB->sheets[$sheet_num]['cellsInfo'][$i][1]['raw'];
                 $result["Slot"] = $sheet[$i][3];
                 $result["Room"] = $string[2];
                 $result["Class"] = $string[1];

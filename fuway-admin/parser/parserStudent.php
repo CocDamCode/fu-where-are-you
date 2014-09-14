@@ -12,13 +12,15 @@ function get_student_schedule($filename, $teacherSchedule)
 
 function get_result($class, $course, $teacherResults)
 {
-    foreach ($teacherResults as &$Result) {
-        if ($Result["Class"] == $class) {
-            if ($Result["Course"] == $course) {
-                return $Result;
+    $results = [];
+    foreach ($teacherResults as &$result) {
+        if ($result["Class"] == $class) {
+            if ($result["Course"] == $course) {
+                array_push($results, $result);
             }
         }
     }
+    return $results;
 }
 
 function get_result_student($dataSDD, $teacherResults)
@@ -47,11 +49,16 @@ function get_result_student($dataSDD, $teacherResults)
                 $result["Room"] = $room;
                 $result["Class"] = $class;
                 $result["Course"] = $course;
-                $student_result = get_result($class, $course, $teacherResults);
-                $result["Date"] = $student_result["Date"];
-                $result["Slot"] = $student_result["Slot"];
-                array_push($results, $result);
+                $student_results = get_result($class, $course, $teacherResults);
+                //print_r($student_results);
+                //return;
+                foreach ($student_results as &$student_result) {
+                    $result["Date"] = $student_result["Date"];
+                    $result["Slot"] = $student_result["Slot"];
+                    array_push($results, $result);
+                }
             }
+
         }
     }
     //print_r($results);
