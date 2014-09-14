@@ -1,3 +1,9 @@
 <?php
 
-    var_dump($_GET);
+    if (isset($_GET['search'])) {
+
+    }
+
+    if (isset($_GET['email'])) {
+
+    }
