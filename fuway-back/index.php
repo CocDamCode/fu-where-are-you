@@ -1,6 +1,6 @@
 <?php
 require_once '../fuway-core/db.php';
-require_once '../fuway-core/dal.php';
+require_once '../fuway-core/api.php';
 
 if (isset($_GET['search'])) {
     echo json_encode(search_person($_GET['search']));

@@ -5,8 +5,8 @@
     <meta charset="utf-8">
 
     <title>Ajax upload using plugin</title>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="js/jquery.form.js"></script>
+    <script src="../resources/jquery-1.11.1.js"></script>
+    <script src="../resources/jquery.form.min.js"></script>
 
     <style>
         #form-upload { padding: 10px; background: #A5CCFF; border-radius: 5px;}
@@ -19,7 +19,7 @@
 <body>
 <h1>Upload file using Form plugin</h1>
 
-<form id="form-upload" method="post" action="file.php" enctype="multipart/form-data">
+<form id="form-upload" method="post" action="upload.php" enctype="multipart/form-data">
     <input type="file" name="file" id="select-file"/>
     <input type="submit" value="Upload" id="submit-upload"/>
 </form>
@@ -32,14 +32,41 @@
 <div id="result">
 </div>
 
-</body>
-</html>
-
 <script>
+    var bar = $('#bar');
+    var percent = $('#percent');
+    var result = $('#result');
+    var percentValue = "0%";
+
     $('#form-upload').ajaxForm({
+        // Do something before uploading
+        beforeUpload: function() {
+            result.empty();
+            percentValue = "0%";
+            bar.width = percentValue;
+            percent.html(percentValue);
+        },
+
+        // Do somthing while uploading
+        uploadProgress: function(event, position, total, percentComplete) {
+            var percentValue = percentComplete + '%';
+            bar.width(percentValue)
+            percent.html(percentValue);
+        },
+
+        // Do something while uploading file finish
+        success: function() {
+            var percentValue = '100%';
+            bar.width(percentValue)
+            percent.html(percentValue);
+        },
+
+        // Add response text to div #result when uploading complete
         complete: function(xhr) {
-            // Add response text to div #result
             $('#result').html(xhr.responseText);
         }
     });
 </script>
+
+</body>
+</html>
