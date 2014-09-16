@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Created by HaiNNT on 9/14/2014.
  */
 
@@ -98,7 +98,7 @@ function showDetail(result) {
     if (persons.length > 0) {
         html += "<div style='padding-top: 15px'>Lịch trong ngày của <b>"+persons[0]["Person"]["Name"]+"</b></div>" +
             "<div class='bigText'>" + date_format(persons[0]["Date"]) + "</div>" +
-            "<table width='100%' border='1'><tr>" +
+            "<table width='100%' border='1' style='text-align: center;'><tr>" +
             "<td>Slot</td>" +
             "<td>Phòng</td>" +
             "<td>Lớp</td>" +
